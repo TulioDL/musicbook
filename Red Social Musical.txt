@@ -1,0 +1,18 @@
+Red Social Musical:
+
+
+1.	Registro de artista: Se permitirá crear un usuario para ingresar datos al perfil de la red social, habrá diferenciación entre solistas y grupos musicales.
+2.	Registro de seguidores: Los fans serán usuarios que pueden entrar a escuchar y comentar los posts.
+3.	Subir contenido: El artista podrá subir su contenido mediante posts, donde ingresará una canción, sus comentarios y detalles de la canción (nombre de la canción, letras, etc.)
+4.	Comentarios: Artistas y seguidores podrán comentar posts.
+5.	Edición y eliminación de posts: Los usuarios podrán editar o eliminar posts propios ya subidos.
+6.	Edición y eliminación de comentarios: Los seguidores y los usuarios podrán editar o eliminar comentarios. En caso de los usuarios, también podrán eliminar comentarios ajenos en sus posts (no en el home).
+7.	Sistema de 'me gusta': Seguidores podrán dar 'me gusta' a los posts de los artistas.
+
+DESARROLLO:
+
+HTML, CSS para la estructura y el diseño del sitio web.
+JavaScript para la interacción del usuario y del lado del cliente.
+"Bibliotecas o frameworks como React para una construcción más estructurada y mantenible del front-end."
+
+Páginas a realizar: Home, perfil, creación de artista/seguidor, edición de posts.
