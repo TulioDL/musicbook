@@ -1,76 +1,127 @@
 const posts = [
     {
         id: crypto.randomUUID(),
-        titulo: "Zombies",
-        artista: "Lacuna Coil",
-        url: "./assets/y2mate.com - Zombies.mp3",
+        titulo: 'Zombies',
+        artista: 'Lacuna Coil',
+        url: './assets/y2mate.com - Zombies.mp3',
         descripcion:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, officiis facere eveniet accusamus totam incidunt natus quo eos aut laborum magni commodi aliquid nemo ratione, corporis rem, in porro consequuntur.",
+            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, officiis facere eveniet accusamus totam incidunt natus quo eos aut laborum magni commodi aliquid nemo ratione, corporis rem, in porro consequuntur.',
         likes: 0,
-        comentarios: ["arrechisimo", "supercalifragilisticuespialidoso"],
-        publicadoPor: "Lacuna Coil",
-        fechaPublicacion: new Date().toISOString()
+        comentarios: ['arrechisimo', 'supercalifragilisticuespialidoso'],
+        publicadoPor: 'Lacuna Coil',
+        fechaPublicacion: new Date().toISOString(),
     },
     {
         id: crypto.randomUUID(),
-        titulo: "Fade to Black",
-        artista: "Metallica",
-        url: "./assets/y2mate.com - Fade to Black.mp3",
+        titulo: 'Fade to Black',
+        artista: 'Metallica',
+        url: './assets/y2mate.com - Fade to Black.mp3',
         descripcion:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, officiis facere eveniet accusamus totam incidunt natus quo eos aut laborum magni commodi aliquid nemo ratione, corporis rem, in porro consequuntur.",
+            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, officiis facere eveniet accusamus totam incidunt natus quo eos aut laborum magni commodi aliquid nemo ratione, corporis rem, in porro consequuntur.',
         likes: 0,
-        comentarios: ["arrechisimo", "supercalifragilisticuespialidoso"],
-        publicadoPor: "Metallica",
-        fechaPublicacion: new Date().toISOString()
+        comentarios: ['arrechisimo', 'supercalifragilisticuespialidoso'],
+        publicadoPor: 'Metallica',
+        fechaPublicacion: new Date().toISOString(),
     },
     {
         id: crypto.randomUUID(),
-        titulo: "Fade to Black",
-        artista: "Metallica",
-        url: "./assets/y2mate.com - Fade to Black.mp3",
+        titulo: 'Fade to Black',
+        artista: 'Metallica',
+        url: './assets/y2mate.com - Fade to Black.mp3',
         descripcion:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, officiis facere eveniet accusamus totam incidunt natus quo eos aut laborum magni commodi aliquid nemo ratione, corporis rem, in porro consequuntur.",
+            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, officiis facere eveniet accusamus totam incidunt natus quo eos aut laborum magni commodi aliquid nemo ratione, corporis rem, in porro consequuntur.',
         likes: 0,
-        comentarios: ["arrechisimo", "supercalifragilisticuespialidoso"],
-        publicadoPor: "Metallica",
-        fechaPublicacion: new Date().toISOString()
+        comentarios: ['arrechisimo', 'supercalifragilisticuespialidoso'],
+        publicadoPor: 'Metallica',
+        fechaPublicacion: new Date().toISOString(),
     },
     {
         id: crypto.randomUUID(),
-        titulo: "Fade to Black",
-        artista: "Metallica",
-        url: "./assets/y2mate.com - Fade to Black.mp3",
+        titulo: 'Fade to Black',
+        artista: 'Metallica',
+        url: './assets/y2mate.com - Fade to Black.mp3',
         descripcion:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, officiis facere eveniet accusamus totam incidunt natus quo eos aut laborum magni commodi aliquid nemo ratione, corporis rem, in porro consequuntur.",
+            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, officiis facere eveniet accusamus totam incidunt natus quo eos aut laborum magni commodi aliquid nemo ratione, corporis rem, in porro consequuntur.',
         likes: 0,
-        comentarios: ["arrechisimo", "supercalifragilisticuespialidoso"],
-        publicadoPor: "Metallica",
-        fechaPublicacion: new Date().toISOString()
-    }
+        comentarios: ['arrechisimo', 'supercalifragilisticuespialidoso'],
+        publicadoPor: 'Metallica',
+        fechaPublicacion: new Date().toISOString(),
+    },
 ];
 
-const publicaciones = posts.map(post => {
-    return `<div class="card-post">
-        <div id="reproductor-${post.id}">
-            <audio class="audio" id="audio-${post.id}" onplay='pausarResto("audio-${post.id}")' preload='auto' controls src='${post.url}'></audio>
+const readPosts = () => {
+    const publicaciones = posts.map(post => {
+        return `<div class="card-post">
+            <div id="reproductor-${post.id}">
+                <audio class="audio" id="audio-${post.id}" onplay='pausarResto("audio-${post.id}")' preload='auto' controls src='${post.url}'></audio>
+            </div>
+            <h1>${post.titulo}</h1>
+            <h4>${post.artista}</h4>
+            <p>${post.descripcion}</p>
+            <div class="btn-box">
+                <label id='likes-${post.id}'>${post.likes}</label>
+                <button id='btnLike-${post.id}' onclick='onLike("${post.id}")' type="button" class="btn btn-outline-primary" data-bs-toggle="button" aria-pressed="true"><i class="fa-solid fa-thumbs-up"></i></button>
+                <label>${post.comentarios.length}</label>
+                <button onclick="desplegarComentarios('${post.id}')" type="button" class="btn btn-outline-primary"><i class="fa-solid fa-comment"></i></button>
+            </div>
+            <div id="comentarios-${post.id}" hidden>
+            </div>
+        </div>`;
+    });
+
+    document.getElementById('posts').innerHTML = publicaciones.join('');
+};
+
+const mostrarFormulario = () => {
+    const formulario = `<hr />
+    <form>
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Suba su archivo de música</label>
+            <input class="form-control" type="file" id="formFile">
         </div>
-        <h1>${post.titulo}</h1>
-        <h4>${post.artista}</h4>
-        <p>${post.descripcion}</p>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Canción</label>
+        </div>
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Inserte una descripción" id="floatingTextarea2"
+                style="height: 100px"></textarea>
+            <label for="floatingTextarea2">Descripción</label>
+        </div>
         <div class="btn-box">
-            <label id='likes-${post.id}'>${post.likes}</label>
-            <button id='btnLike-${post.id}' onclick='onLike("${post.id}")' type="button" class="btn btn-outline-primary" data-bs-toggle="button" aria-pressed="true"><i class="fa-solid fa-thumbs-up"></i></button>
-            <label>${post.comentarios.length}</label>
-            <button onclick="desplegarComentarios('${post.id}')" type="button" class="btn btn-outline-primary"><i class="fa-solid fa-comment"></i></button>
+            <input class="btn-outline-primary btn-form" type="submit" onclick="crearPost(event)" value="Postear">
+            <button class="btn-outline-primary btn-form" onclick="cerrarFormulario()">Cerrar</button>
         </div>
-        <div id="comentarios-${post.id}" hidden>
-        </div>
-    </div>`;
-});
+    </form>`;
 
-document.getElementById('posts').innerHTML = publicaciones.join('');
+    document.getElementById('formularioNuevoPost').innerHTML = formulario;
+};
 
+const cerrarFormulario = () => {
+    document.getElementById(
+        'formularioNuevoPost'
+    ).innerHTML = `<button class="btn btn-outline-primary" onclick="mostrarFormulario()">+</button>`;
+};
 
+const crearPost = e => {
+    e.preventDefault();
+    const nuevoPost = {
+        id: crypto.randomUUID(),
+        titulo: e.target.form[1].value,
+        artista: 'Metallica',
+        url: './assets/y2mate.com - Fade to Black.mp3',
+        descripcion: e.target.form[2].value,
+        likes: 0,
+        comentarios: ['arrechisimo', 'supercalifragilisticuespialidoso'],
+        publicadoPor: 'Metallica',
+        fechaPublicacion: new Date().toISOString(),
+    };
+
+    posts.unshift(nuevoPost);
+    readPosts();
+};
+
+readPosts();
 // const pausarResto = id => {
 //     let audio = [...document.getElementsByClassName('audio')].filter(
 //         audio => audio.id != id
