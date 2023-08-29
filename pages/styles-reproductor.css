@@ -548,3 +548,8 @@ ul.dropdown li a {
 .btn-box {
   text-align: right;
 }
+
+.btn-form {
+    border-radius: 3px;
+    margin: 1rem;
+}
